@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import Avatar from 'material-ui/lib/avatar';
+import List from 'material-ui/lib/lists/list';
+import ListItem from 'material-ui/lib/lists/list-item';
+import Divider from 'material-ui/lib/divider'
 
 import styles from "./index.css"
 
-const Item = ({name ="", image=null, kinds=[], songs=[]}) =>
+const Item = ({name ="", image=null, kinds=[], songs=[], albums=[], topTracks=[], relatedArtists=[]}) =>
 
 (<div className={styles.itemDetails}>
     {
@@ -19,6 +23,7 @@ const Item = ({name ="", image=null, kinds=[], songs=[]}) =>
         })
       }
     </div>
+
     <ul className={styles.list}>
       {
         songs &&
@@ -27,6 +32,52 @@ const Item = ({name ="", image=null, kinds=[], songs=[]}) =>
         })
       }
     </ul>
+
+
+
+    <Divider />
+
+
+    <List subheader="Albums" >
+      {
+        albums &&
+        albums.map((album, index) => {
+          return <ListItem key={index}
+                           primaryText={album.name}
+                           leftAvatar={<Avatar src={album.images[0].url} />} />
+        })
+      }
+
+      </List>
+
+    <Divider />
+
+    <List subheader="TopTracks">
+      {
+        topTracks &&
+        topTracks.map((topTracks, index) => {
+          return <ListItem key={index}
+                            primaryText={topTracks.name}/>
+        })
+      }
+    </List>
+
+    <Divider />
+
+    <List subheader="Related Artists">
+      {
+        relatedArtists &&
+        relatedArtists.map((relatedArtists, index) => {
+          return <div key={index}>
+          <ListItem key={index}
+                    primaryText={relatedArtists.name}
+                    leftAvatar={<Avatar src={relatedArtists.images[0].url}/>} />
+
+          </div>
+        })
+      }
+
+    </List>
 
 </div>)
 

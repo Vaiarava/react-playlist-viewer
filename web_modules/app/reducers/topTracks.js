@@ -1,19 +1,12 @@
 import fetchJSON from "app/fetchJSON"
 import consts from "app/consts"
 
-export const GET = "molotov/artist/GET"
-export const SET = "molotov/artist/SET"
-export const ERROR = "molotov/artist/ERROR"
+export const GET = "molotov/topTracks/GET"
+export const SET = "molotov/topTracks/SET"
+export const ERROR = "molotov/topTracks/ERROR"
 
 const initialState = {
   loading:true
-}
-
-const format = (data) => {
-    const {name, genres, images, albums} = data
-    let result = {name, genres, albums}
-    if(images && images.length>2) result.picture = images[3]
-    return result
 }
 
 // redux reducer
@@ -26,9 +19,8 @@ export default function reducer(state = initialState, action) {
         }
 
     case SET:
-        return {
-            ...format(action.response)
-        }
+        return action.response;
+
 
     case ERROR:
         /* eslint-disable no-console */
@@ -55,7 +47,7 @@ export function get(id) {
             ERROR,
         ],
         promise: (
-            fetchJSON(consts.api.enpoints.getArtist(id), {
+            fetchJSON(consts.api.enpoints.getTopTracks(id), {
                 method: "GET"
             })
         )
