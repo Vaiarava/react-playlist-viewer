@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Avatar from 'material-ui/lib/avatar';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
-import Divider from 'material-ui/lib/divider'
+import Divider from 'material-ui/lib/divider';
+
 
 import styles from "./index.css"
 
@@ -33,10 +34,7 @@ const Item = ({name ="", image=null, kinds=[], songs=[], albums=[], topTracks=[]
       }
     </ul>
 
-
-
-    <Divider />
-
+    <Divider inline-block />
 
     <List subheader="Albums" >
       {
@@ -52,7 +50,7 @@ const Item = ({name ="", image=null, kinds=[], songs=[], albums=[], topTracks=[]
 
     <Divider />
 
-    <List subheader="TopTracks">
+    <List subheader="Top Tracks">
       {
         topTracks &&
         topTracks.map((topTracks, index) => {
